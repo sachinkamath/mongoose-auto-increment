@@ -95,20 +95,21 @@ exports.plugin = function (schema, options) {
   );
 
   var generateId = function(count) {
+    var prefixFiller = ''
     if (fieldTypeString) {
       if(count <=9) {
-        settings.prefix += '0000'
+        prefixFiller = '0000'
       }
       else if(count>=10 && count <=99) {
-        settings.prefix += '000'
+        prefixFiller = '000'
       }
       else if (count>=100 && count<=999) {
-        settings.prefix += '00'
+        prefixFiller = '00'
       }
       else if(count>=1000 && count<=9999) {
-        settings.prefix += '0'
+        prefixFiller = '0'
       }
-      return settings.prefix + count + settings.suffix;
+      return settings.prefix + prefixFiller + count + settings.suffix;
     }
     return count;
   };
